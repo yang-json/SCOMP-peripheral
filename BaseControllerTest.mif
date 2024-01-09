@@ -1,0 +1,170 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 2048;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..7FF] : 0000;  -- Default to NOP
+
+           000 : 281C;  -- 	jump RainbowSnake
+           001 : 98A0;  -- 	out NeoPixel_SET_COL_16
+           002 : 0884;  -- 	load TWO
+           003 : 98A8;  -- 	out NeoPixel_CHANGE_ONE_LED
+           004 : 2800;  -- 	jump TestLoop
+           005 : 8050;  -- 	Call SetToRed
+           006 : 98A5;  -- 	OUT NeoPixel_CHANGE_ALL
+           007 : 804B;  -- 	CALL SmallWait
+           008 : 8057;  -- 	call SetToOrange
+           009 : 98A5;  -- 	OUT NeoPixel_CHANGE_ALL
+           00A : 804B;  -- 	CALL SmallWait
+           00B : 805E;  -- 	call SetToYellow
+           00C : 98A5;  -- 	OUT NeoPixel_CHANGE_ALL
+           00D : 804B;  -- 	CALL SmallWait
+           00E : 8065;  -- 	call SetToGreen
+           00F : 98A5;  -- 	OUT NeoPixel_CHANGE_ALL
+           010 : 804B;  -- 	CALL SmallWait
+           011 : 806C;  -- 	call SetToBlue
+           012 : 98A5;  -- 	OUT NeoPixel_CHANGE_ALL
+           013 : 804B;  -- 	CALL SmallWait
+           014 : 8073;  -- 	call SetToPurple
+           015 : 98A5;  -- 	OUT NeoPixel_CHANGE_ALL
+           016 : 804B;  -- 	CALL SmallWait
+           017 : 807A;  -- 	call SetToViolet
+           018 : 98A5;  -- 	OUT NeoPixel_CHANGE_ALL
+           019 : 804B;  -- 	CALL SmallWait
+           01A : 2805;  -- 	jump RainbowLoop	
+           01B : 0000;  -- 	Counter: dw 0
+           01C : 8050;  -- 	Call SetToRed
+           01D : 081B;  -- 	load Counter
+           01E : 98A8;  -- 	OUT NeoPixel_CHANGE_ONE_LED
+           01F : 804B;  -- 	CALL SmallWait
+           020 : 8040;  -- 	CALL IncrementCounterAndClearLastPixel
+           021 : 8057;  -- 	call SetToOrange
+           022 : 081B;  -- 	load Counter
+           023 : 98A8;  -- 	OUT NeoPixel_CHANGE_ONE_LED
+           024 : 804B;  -- 	CALL SmallWait
+           025 : 8040;  -- 	CALL IncrementCounterAndClearLastPixel
+           026 : 805E;  -- 	call SetToYellow
+           027 : 081B;  -- 	load Counter
+           028 : 98A8;  -- 	OUT NeoPixel_CHANGE_ONE_LED
+           029 : 804B;  -- 	CALL SmallWait
+           02A : 8040;  -- 	CALL IncrementCounterAndClearLastPixel
+           02B : 8065;  -- 	call SetToGreen
+           02C : 081B;  -- 	load Counter
+           02D : 98A8;  -- 	OUT NeoPixel_CHANGE_ONE_LED
+           02E : 804B;  -- 	CALL SmallWait
+           02F : 8040;  -- 	CALL IncrementCounterAndClearLastPixel
+           030 : 806C;  -- 	call SetToBlue
+           031 : 081B;  -- 	load Counter
+           032 : 98A8;  -- 	OUT NeoPixel_CHANGE_ONE_LED
+           033 : 804B;  -- 	CALL SmallWait
+           034 : 8040;  -- 	CALL IncrementCounterAndClearLastPixel
+           035 : 8073;  -- 	call SetToPurple
+           036 : 081B;  -- 	load Counter
+           037 : 98A8;  -- 	OUT NeoPixel_CHANGE_ONE_LED
+           038 : 804B;  -- 	CALL SmallWait
+           039 : 8040;  -- 	CALL IncrementCounterAndClearLastPixel
+           03A : 807A;  -- 	call SetToViolet
+           03B : 081B;  -- 	load Counter
+           03C : 98A8;  -- 	OUT NeoPixel_CHANGE_ONE_LED
+           03D : 804B;  -- 	CALL SmallWait
+           03E : 8040;  -- 	CALL IncrementCounterAndClearLastPixel
+           03F : 281C;  -- 	jump RainbowSnake
+           040 : B800;  -- 	Loadi 0
+           041 : 98A0;  -- 	out NeoPixel_SET_COL_16
+           042 : 081B;  -- 	Load Counter
+           043 : 98A8;  -- 	out NeoPixel_CHANGE_ONE_LED
+           044 : 6801;  -- 	addi 1
+           045 : 101B;  -- 	store Counter
+           046 : 6FC4;  -- 	addi -60
+           047 : 304A;  -- 	jneg Rtrn
+           048 : B800;  -- 	loadi 0
+           049 : 101B;  -- 	store Counter
+           04A : 8800;  -- 	Return
+           04B : 9802;  -- 	OUT Timer
+           04C : 9002;  -- 	IN Timer
+           04D : 2084;  -- 	SUB TWO
+           04E : 304C;  -- 	JNEG TimerLoop
+           04F : 8800;  -- 	RETURN
+           050 : 0888;  -- 	LOAD RED_R
+           051 : 98A1;  -- 	out NeoPixel_SET_R8
+           052 : 0889;  -- 	LOAD RED_G
+           053 : 98A2;  -- 	out NeoPixel_SET_G8
+           054 : 088A;  -- 	LOAD RED_B
+           055 : 98A3;  -- 	out NeoPixel_SET_B8
+           056 : 8800;  -- 	Return
+           057 : 088B;  -- 	LOAD ORANGE_R
+           058 : 98A1;  -- 	out NeoPixel_SET_R8
+           059 : 088C;  -- 	LOAD ORANGE_G
+           05A : 98A2;  -- 	out NeoPixel_SET_G8
+           05B : 088D;  -- 	LOAD ORANGE_B
+           05C : 98A3;  -- 	out NeoPixel_SET_B8
+           05D : 8800;  -- 	return
+           05E : 088E;  -- 	LOAD YELLOW_R
+           05F : 98A1;  -- 	out NeoPixel_SET_R8
+           060 : 088F;  -- 	LOAD YELLOW_G
+           061 : 98A2;  -- 	out NeoPixel_SET_G8
+           062 : 0890;  -- 	LOAD YELLOW_B
+           063 : 98A3;  -- 	out NeoPixel_SET_B8
+           064 : 8800;  -- 	Return
+           065 : 0891;  -- 	LOAD GREEN_R
+           066 : 98A1;  -- 	out NeoPixel_SET_R8
+           067 : 0892;  -- 	LOAD GREEN_G
+           068 : 98A2;  -- 	out NeoPixel_SET_G8
+           069 : 0893;  -- 	LOAD GREEN_B
+           06A : 98A3;  -- 	out NeoPixel_SET_B8
+           06B : 8800;  -- 	Return
+           06C : 0894;  -- 	LOAD BLUE_R
+           06D : 98A1;  -- 	out NeoPixel_SET_R8
+           06E : 0895;  -- 	LOAD BLUE_G
+           06F : 98A2;  -- 	out NeoPixel_SET_G8
+           070 : 0896;  -- 	LOAD BLUE_B
+           071 : 98A3;  -- 	out NeoPixel_SET_B8
+           072 : 8800;  -- 	Return
+           073 : 0897;  -- 	LOAD PURPLE_R
+           074 : 98A1;  -- 	out NeoPixel_SET_R8
+           075 : 0898;  -- 	LOAD PURPLE_G
+           076 : 98A2;  -- 	out NeoPixel_SET_G8
+           077 : 0899;  -- 	LOAD PURPLE_B
+           078 : 98A3;  -- 	out NeoPixel_SET_B8
+           079 : 8800;  -- 	Return
+           07A : 089A;  -- 	LOAD VIOLET_R
+           07B : 98A1;  -- 	out NeoPixel_SET_R8
+           07C : 089B;  -- 	LOAD VIOLET_G
+           07D : 98A2;  -- 	out NeoPixel_SET_G8
+           07E : 089C;  -- 	LOAD VIOLET_B
+           07F : 98A3;  -- 	out NeoPixel_SET_B8
+           080 : 8800;  -- 	Return
+           081 : 0000;  -- Color16: 	DW  0
+           082 : 0FFF;  -- Color16Test: DW &B111111111111
+           083 : 0001;  -- ONE:		DW	1
+           084 : 0002;  -- TWO: 		DW  2
+           085 : 0003;  -- THREE:		DW  3
+           086 : 001F;  -- BLUE_16:   DW  &B0000000000011111
+           087 : FFFF;  -- WHITE_16:   DW &B1111111111111111
+           088 : 00FF;  -- RED_R:		DW &B11111111
+           089 : 0000;  -- RED_G:		DW &B00000000
+           08A : 0000;  -- RED_B:		DW &B00000000
+           08B : 00FF;  -- ORANGE_R:		DW &H0FF
+           08C : 00A5;  -- ORANGE_G:		DW &H0A5
+           08D : 0000;  -- ORANGE_B:		DW &H000
+           08E : 00FF;  -- YELLOW_R:		DW &H0FF
+           08F : 00FF;  -- YELLOW_G:		DW &H0FF
+           090 : 0000;  -- YELLOW_B:		DW &H000
+           091 : 0000;  -- GREEN_R:	DW &H000
+           092 : 0080;  -- GREEN_G:		DW &H080
+           093 : 0000;  -- GREEN_B:	DW &H000
+           094 : 0000;  -- BLUE_R:	DW &H000
+           095 : 0000;  -- BLUE_G:	DW &H000
+           096 : 00FF;  -- BLUE_B:	DW &H0FF
+           097 : 004B;  -- PURPLE_R:	DW &H04B
+           098 : 0000;  -- PURPLE_G:	DW &H000
+           099 : 0082;  -- PURPLE_B:	DW &H082
+           09A : 00EE;  -- VIOLET_R:	DW &H0EE
+           09B : 0082;  -- VIOLET_G:	DW &H082
+           09C : 00EE;  -- VIOLET_B:	DW &H0EE
+  END;

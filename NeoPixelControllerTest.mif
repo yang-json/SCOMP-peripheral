@@ -1,0 +1,92 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 2048;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..7FF] : 0000;  -- Default to NOP
+
+           000 : 0800;  -- 	LOAD 	Switches
+           001 : 4A00;  -- 	AND 	Bit9
+           002 : 3804;  -- 	JPOS 	TestSelect
+           003 : 2800;  -- 	JUMP	Start
+           004 : 0800;  -- 	LOAD 	Switches
+           005 : 49FF;  -- 	AND 	Low9Mask
+           006 : 400C;  -- 	JZERO 	TestConstant16Bit
+           007 : 6FFF;  -- 	ADDI	-1
+           008 : 401A;  -- 	JZERO   Test24Bit
+           009 : 6FFF;  -- 	ADDI	-1
+           00A : 4036;  -- 	JZERO	Test16BitIndex
+           00B : 2800;  -- 	JUMP 	Start
+           00C : 0800;  -- 	LOAD 	Switches
+           00D : 49C0;  -- 	AND 	RedMask
+           00E : 6004;  -- 	SHIFT   4
+           00F : 104E;  -- 	STORE	Color16
+           010 : 0800;  -- 	LOAD 	Switches
+           011 : 4838;  -- 	AND  	GreenMask
+           012 : 6003;  -- 	SHIFT	3
+           013 : 504E;  -- 	OR		Color16
+           014 : 0800;  -- 	LOAD	Switches
+           015 : 4838;  -- 	AND		GreenMask
+           016 : 504E;  -- 	OR		Color16
+           017 : 084E;  -- 	LOAD	Color16
+           018 : 98A5;  -- 	OUT		COL_16_ALL
+           019 : 280C;  -- 	JUMP 	TestConstant16Bit
+           01A : 0800;  -- 	LOAD 	Switches
+           01B : 4A00;  -- 	AND		Bit9
+           01C : 381E;  -- 	JPOS	ReadRed
+           01D : 281A;  -- 	JUMP	Test24Bit
+           01E : 0800;  -- 	LOAD 	Switches
+           01F : 48FF;  -- 	AND		Low8Mask
+           020 : 98A2;  -- 	OUT 	R8
+           021 : 0800;  -- 	LOAD 	Switches
+           022 : 4A00;  -- 	AND		Bit9
+           023 : 4025;  -- 	JZERO 	ReadGreen
+           024 : 281A;  -- 	JUMP 	Test24Bit
+           025 : 0800;  -- 	LOAD 	Switches
+           026 : 48FF;  -- 	AND		Low8Mask
+           027 : 98A3;  -- 	OUT 	G8
+           028 : 0800;  -- 	LOAD 	Switches
+           029 : 4A00;  -- 	AND		Bit9
+           02A : 382C;  -- 	JPOS 	ReadBlue
+           02B : 2825;  -- 	JUMP 	ReadGreen
+           02C : 0800;  -- 	LOAD	Switches
+           02D : 48FF;  -- 	AND		Low8Mask
+           02E : 98A4;  -- 	OUT 	B8
+           02F : 0800;  -- 	LOAD	Switches
+           030 : 4A00;  -- 	AND		Bit9
+           031 : 4033;  -- 	JZERO	Output24Bit
+           032 : 282C;  -- 	JUMP	ReadBlue
+           033 : 0A00;  -- 	LOAD	Bit9
+           034 : 98A0;  -- 	OUT		CNTRL
+           035 : 281A;  -- 	JUMP	Test24Bit
+           036 : 0800;  -- 	LOAD 	Switches
+           037 : 49C0;  -- 	AND 	RedMask
+           038 : 6004;  -- 	SHIFT   4
+           039 : 104E;  -- 	STORE	Color16
+           03A : 0800;  -- 	LOAD 	Switches
+           03B : 4838;  -- 	AND  	GreenMask
+           03C : 6003;  -- 	SHIFT	3
+           03D : 504E;  -- 	OR		Color16
+           03E : 0800;  -- 	LOAD	Switches
+           03F : 4838;  -- 	AND		GreenMask
+           040 : 504E;  -- 	OR		Color16
+           041 : 0800;  -- 	LOAD	Switches
+           042 : 4A00;  -- 	AND		Bit9
+           043 : 3836;  -- 	JPOS	Test16BitIndex
+           044 : 084E;  -- 	LOAD	Color16
+           045 : 98A1;  -- 	OUT		COL_16
+           046 : 2836;  -- 	JUMP	Test16BitIndex
+           047 : 0800;  -- 	LOAD	Switches
+           048 : 4A00;  -- 	AND		Bit9
+           049 : 4047;  -- 	JZERO	Test16BitIndexInput
+           04A : 0800;  -- 	LOAD	Switches
+           04B : 48FF;  -- 	AND		Low8Mask
+           04C : 98A0;  -- 	OUT		CNTRL
+           04D : 2836;  -- 	JUMP 	Test16BitIndex
+           04E : 0000;  -- Color16: 	DW  0
+  END;

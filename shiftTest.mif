@@ -1,0 +1,110 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 2048;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..7FF] : 0000;  -- Default to NOP
+
+           000 : 8015;  -- Call LoadRed
+           001 : B800;  -- loadi 0
+           002 : 98A2;  -- out NeoPixel_WRITE_SINGLE_IMMED
+           003 : 801C;  -- Call LoadYellow
+           004 : B801;  -- loadi 1
+           005 : 98A2;  -- out NeoPixel_WRITE_SINGLE_IMMED
+           006 : 8023;  -- Call LoadGreen
+           007 : B802;  -- loadi 2
+           008 : 98A2;  -- out NeoPixel_WRITE_SINGLE_IMMED
+           009 : 802A;  -- Call LoadBlue
+           00A : B803;  -- loadi 3
+           00B : 98A2;  -- out NeoPixel_WRITE_SINGLE_IMMED
+           00C : 8031;  -- Call LoadPurple
+           00D : B804;  -- loadi 4
+           00E : 98A2;  -- out NeoPixel_WRITE_SINGLE_IMMED
+           00F : 803D;  -- call fiveSecWait
+           010 : 0845;  -- load shift_end_index
+           011 : 98A9;  -- out NeoPixel_SHIFT
+           012 : 98A0;  -- out NeoPixel_WRITE_LEDS
+           013 : 280F;  -- jump lightLoop
+           014 : 2814;  -- jump loop
+           015 : 084C;  -- 	LOAD RED_R
+           016 : 98A4;  -- 	out NeoPixel_LOAD_R8
+           017 : 084D;  -- 	LOAD RED_G
+           018 : 98A5;  -- 	out NeoPixel_LOAD_G8
+           019 : 084E;  -- 	LOAD RED_B
+           01A : 98A6;  -- 	out NeoPixel_LOAD_B8
+           01B : 8800;  -- 	Return
+           01C : 0852;  -- 	LOAD YELLOW_R
+           01D : 98A4;  -- 	out NeoPixel_LOAD_R8
+           01E : 0853;  -- 	LOAD YELLOW_G
+           01F : 98A5;  -- 	out NeoPixel_LOAD_G8
+           020 : 0854;  -- 	LOAD YELLOW_B
+           021 : 98A6;  -- 	out NeoPixel_LOAD_B8
+           022 : 8800;  -- 	Return
+           023 : 0855;  -- 	LOAD GREEN_R
+           024 : 98A4;  -- 	out NeoPixel_LOAD_R8
+           025 : 0856;  -- 	LOAD GREEN_G
+           026 : 98A5;  -- 	out NeoPixel_LOAD_G8
+           027 : 0857;  -- 	LOAD GREEN_B
+           028 : 98A6;  -- 	out NeoPixel_LOAD_B8
+           029 : 8800;  -- 	Return
+           02A : 0858;  -- 	LOAD BLUE_R
+           02B : 98A4;  -- 	out NeoPixel_LOAD_R8
+           02C : 0859;  -- 	LOAD BLUE_G
+           02D : 98A5;  -- 	out NeoPixel_LOAD_G8
+           02E : 085A;  -- 	LOAD BLUE_B
+           02F : 98A6;  -- 	out NeoPixel_LOAD_B8
+           030 : 8800;  -- 	Return
+           031 : 085B;  -- 	LOAD PURPLE_R
+           032 : 98A4;  -- 	out NeoPixel_LOAD_R8
+           033 : 085C;  -- 	LOAD PURPLE_G
+           034 : 98A5;  -- 	out NeoPixel_LOAD_G8
+           035 : 085D;  -- 	LOAD PURPLE_B
+           036 : 98A6;  -- 	out NeoPixel_LOAD_B8
+           037 : 8800;  -- 	Return
+           038 : 9802;  -- 	OUT Timer
+           039 : 9002;  -- 	IN Timer
+           03A : 2047;  -- 	SUB TWO
+           03B : 3039;  -- 	JNEG TimerLoop
+           03C : 8800;  -- 	RETURN
+           03D : 9802;  -- 	OUT Timer
+           03E : 9002;  -- 	IN Timer
+           03F : 2049;  -- 	Sub FIFTY
+           040 : 303E;  -- 	JNEG fiveSecLoop
+           041 : 8800;  -- 	RETURN
+           042 : 0000;  -- Color16: 	DW  0
+           043 : FFFF;  -- Color16Test1: DW &B1111111111111111
+           044 : AAAA;  -- Color16Test2: DW &B1010101010101010
+           045 : 0002;  -- shift_end_index: DW &B00000010
+           046 : 0001;  -- ONE:		DW	1
+           047 : 0002;  -- TWO: 		DW  2
+           048 : 0003;  -- THREE:		DW  3
+           049 : 0032;  -- FIFTY:		DW 50
+           04A : 001F;  -- BLUE_16:   DW  &B0000000000011111
+           04B : FFFF;  -- WHITE_16:   DW &B1111111111111111
+           04C : 00FF;  -- RED_R:		DW &B11111111
+           04D : 0000;  -- RED_G:		DW &B00000000
+           04E : 0000;  -- RED_B:		DW &B00000000
+           04F : 00FF;  -- ORANGE_R:		DW &H0FF
+           050 : 00A5;  -- ORANGE_G:		DW &H0A5
+           051 : 0000;  -- ORANGE_B:		DW &H000
+           052 : 00FF;  -- YELLOW_R:		DW &H0FF
+           053 : 00FF;  -- YELLOW_G:		DW &H0FF
+           054 : 0000;  -- YELLOW_B:		DW &H000
+           055 : 0000;  -- GREEN_R:	DW &H000
+           056 : 0080;  -- GREEN_G:		DW &H080
+           057 : 0000;  -- GREEN_B:	DW &H000
+           058 : 0000;  -- BLUE_R:	DW &H000
+           059 : 0000;  -- BLUE_G:	DW &H000
+           05A : 00FF;  -- BLUE_B:	DW &H0FF
+           05B : 004B;  -- PURPLE_R:	DW &H04B
+           05C : 0000;  -- PURPLE_G:	DW &H000
+           05D : 0082;  -- PURPLE_B:	DW &H082
+           05E : 00EE;  -- VIOLET_R:	DW &H0EE
+           05F : 0082;  -- VIOLET_G:	DW &H082
+           060 : 00EE;  -- VIOLET_B:	DW &H0EE
+  END;

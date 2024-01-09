@@ -1,0 +1,134 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 2048;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..7FF] : 0000;  -- Default to NOP
+
+           000 : B840;  -- 	LOADI 64
+           001 : 98AA;  -- 	OUT NeoPixel_SET_BRIGHTNESS
+           002 : 8056;  -- 	CALL fiveSecWait
+           003 : B830;  -- 	LOADI 48
+           004 : 98AA;  -- 	OUT NeoPixel_SET_BRIGHTNESS
+           005 : 8056;  -- 	CALL fiveSecWait
+           006 : B820;  -- 	LOADI 32
+           007 : 98AA;  -- 	OUT NeoPixel_SET_BRIGHTNESS
+           008 : 8056;  -- 	CALL fiveSecWait
+           009 : B810;  -- 	LOADI 16
+           00A : 98AA;  -- 	OUT NeoPixel_SET_BRIGHTNESS
+           00B : 8056;  -- 	CALL fiveSecWait
+           00C : B800;  -- 	LOADI 0
+           00D : 98AA;  -- 	OUT NeoPixel_SET_BRIGHTNESS
+           00E : 8056;  -- 	CALL fiveSecWait
+           00F : 2800;  -- 	jump BRITEST
+           010 : 802E;  -- Call LOADToRed
+           011 : 98A7;  -- OUT NeoPixel_LOAD_ALL
+           012 : 98A0;  -- OUT NeoPixel_WRITE_LEDS
+           013 : 8056;  -- Call fiveSecWait
+           014 : 8035;  -- Call LOADToYellow
+           015 : 98A7;  -- OUT NeoPixel_LOAD_ALL
+           016 : 98A0;  -- OUT NeoPixel_WRITE_LEDS
+           017 : 8056;  -- CALL fiveSecWait
+           018 : 085C;  -- load Color16Test1
+           019 : 98A3;  -- out NeoPixel_LOAD_COL_16
+           01A : 98A7;  -- OUT NeoPixel_LOAD_ALL
+           01B : 98A0;  -- OUT NeoPixel_WRITE_LEDS
+           01C : 8056;  -- CALL fiveSecWait
+           01D : 085D;  -- load Color16Test2
+           01E : 98A1;  -- out NeoPixel_WRITE_COL_16_ALL
+           01F : 8056;  -- CALL fiveSecWait
+           020 : 085C;  -- load Color16Test1
+           021 : 98A3;  -- out NeoPixel_LOAD_COL_16
+           022 : B800;  -- loadi 0
+           023 : 98A2;  -- out NeoPixel_WRITE_COL_16_SINGLE
+           024 : 8056;  -- CALL fiveSecWait
+           025 : 802E;  -- Call LOADToRed
+           026 : 98A7;  -- OUT NeoPixel_LOAD_ALL
+           027 : 98A0;  -- OUT NeoPixel_WRITE_LEDS
+           028 : 8056;  -- CALL fiveSecWait
+           029 : 804A;  -- Call LOADToPurple
+           02A : B800;  -- loadi 0
+           02B : 98A8;  -- out NeoPixel_LOAD_ONE_LED
+           02C : 98A0;  -- out NeoPixel_WRITE_LEDS
+           02D : 282D;  -- jump loop
+           02E : 0864;  -- 	LOAD RED_R
+           02F : 98A4;  -- 	out NeoPixel_LOAD_R8
+           030 : 0865;  -- 	LOAD RED_G
+           031 : 98A5;  -- 	out NeoPixel_LOAD_G8
+           032 : 0866;  -- 	LOAD RED_B
+           033 : 98A6;  -- 	out NeoPixel_LOAD_B8
+           034 : 8800;  -- 	Return
+           035 : 086A;  -- 	LOAD YELLOW_R
+           036 : 98A4;  -- 	out NeoPixel_LOAD_R8
+           037 : 086B;  -- 	LOAD YELLOW_G
+           038 : 98A5;  -- 	out NeoPixel_LOAD_G8
+           039 : 086C;  -- 	LOAD YELLOW_B
+           03A : 98A6;  -- 	out NeoPixel_LOAD_B8
+           03B : 8800;  -- 	Return
+           03C : 086D;  -- 	LOAD GREEN_R
+           03D : 98A4;  -- 	out NeoPixel_LOAD_R8
+           03E : 086E;  -- 	LOAD GREEN_G
+           03F : 98A5;  -- 	out NeoPixel_LOAD_G8
+           040 : 086F;  -- 	LOAD GREEN_B
+           041 : 98A6;  -- 	out NeoPixel_LOAD_B8
+           042 : 8800;  -- 	Return
+           043 : 0870;  -- 	LOAD BLUE_R
+           044 : 98A4;  -- 	out NeoPixel_LOAD_R8
+           045 : 0871;  -- 	LOAD BLUE_G
+           046 : 98A5;  -- 	out NeoPixel_LOAD_G8
+           047 : 0872;  -- 	LOAD BLUE_B
+           048 : 98A6;  -- 	out NeoPixel_LOAD_B8
+           049 : 8800;  -- 	Return
+           04A : 0873;  -- 	LOAD PURPLE_R
+           04B : 98A4;  -- 	out NeoPixel_LOAD_R8
+           04C : 0874;  -- 	LOAD PURPLE_G
+           04D : 98A5;  -- 	out NeoPixel_LOAD_G8
+           04E : 0875;  -- 	LOAD PURPLE_B
+           04F : 98A6;  -- 	out NeoPixel_LOAD_B8
+           050 : 8800;  -- 	Return
+           051 : 9802;  -- 	OUT Timer
+           052 : 9002;  -- 	IN Timer
+           053 : 205F;  -- 	SUB TWO
+           054 : 3052;  -- 	JNEG TimerLoop
+           055 : 8800;  -- 	RETURN
+           056 : 9802;  -- 	OUT Timer
+           057 : 9002;  -- 	IN Timer
+           058 : 2061;  -- 	Sub FIFTY
+           059 : 3057;  -- 	JNEG fiveSecLoop
+           05A : 8800;  -- 	RETURN
+           05B : 0000;  -- Color16: 	DW  0
+           05C : FFFF;  -- Color16Test1: DW &B1111111111111111
+           05D : AAAA;  -- Color16Test2: DW &B1010101010101010
+           05E : 0001;  -- ONE:		DW	1
+           05F : 0002;  -- TWO: 		DW  2
+           060 : 0003;  -- THREE:		DW  3
+           061 : 0032;  -- FIFTY:		DW 50
+           062 : 001F;  -- BLUE_16:   DW  &B0000000000011111
+           063 : FFFF;  -- WHITE_16:   DW &B1111111111111111
+           064 : 00FF;  -- RED_R:		DW &B11111111
+           065 : 0000;  -- RED_G:		DW &B00000000
+           066 : 0000;  -- RED_B:		DW &B00000000
+           067 : 00FF;  -- ORANGE_R:		DW &H0FF
+           068 : 00A5;  -- ORANGE_G:		DW &H0A5
+           069 : 0000;  -- ORANGE_B:		DW &H000
+           06A : 00FF;  -- YELLOW_R:		DW &H0FF
+           06B : 00FF;  -- YELLOW_G:		DW &H0FF
+           06C : 0000;  -- YELLOW_B:		DW &H000
+           06D : 0000;  -- GREEN_R:	DW &H000
+           06E : 0080;  -- GREEN_G:		DW &H080
+           06F : 0000;  -- GREEN_B:	DW &H000
+           070 : 0000;  -- BLUE_R:	DW &H000
+           071 : 0000;  -- BLUE_G:	DW &H000
+           072 : 00FF;  -- BLUE_B:	DW &H0FF
+           073 : 004B;  -- PURPLE_R:	DW &H04B
+           074 : 0000;  -- PURPLE_G:	DW &H000
+           075 : 0082;  -- PURPLE_B:	DW &H082
+           076 : 00EE;  -- VIOLET_R:	DW &H0EE
+           077 : 0082;  -- VIOLET_G:	DW &H082
+           078 : 00EE;  -- VIOLET_B:	DW &H0EE
+  END;
